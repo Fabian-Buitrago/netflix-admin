@@ -4,6 +4,7 @@ import Sidebar from "./components/sidebar/Sidebar";
 import Topbar from "./components/topbar/Topbar";
 
 import Home from "./pages/home/Home";
+import Login from "./pages/login/Login";
 import ProductList from "./pages/productList/ProductList";
 import "./App.css";
 
@@ -20,6 +21,7 @@ const AppLayout = () => (
 function App() {
   return (
     <Routes>
+      <Route path="/login" element={<Login />} />
       <Route element={<AppLayout />}>
         <Route index element={<Home />} />
         <Route path="/movies" element={<ProductList />} />
