@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Routes, Route, Outlet } from "react-router-dom";
 
 import Sidebar from "./components/sidebar/Sidebar";
@@ -18,22 +17,6 @@ const AppLayout = () => (
 );
 
 function App() {
-  const MONTHS = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-
-  const [userState, setUserState] = useState([]);
   return (
     <Routes>
       <Route element={<AppLayout />}>
