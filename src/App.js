@@ -4,6 +4,7 @@ import Sidebar from "./components/sidebar/Sidebar";
 import Topbar from "./components/topbar/Topbar";
 
 import Home from "./pages/home/Home";
+import ProductList from "./pages/productList/ProductList";
 import "./App.css";
 
 const AppLayout = () => (
@@ -21,6 +22,7 @@ function App() {
     <Routes>
       <Route element={<AppLayout />}>
         <Route index element={<Home />} />
+        <Route path="/movies" element={<ProductList />} />
       </Route>
     </Routes>
   );
