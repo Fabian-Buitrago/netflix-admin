@@ -15,12 +15,11 @@ export const deleteMovieStart = () => ({
   type: "DELETE_MOVIE_START",
 });
 
-export const deleteMovieSuccess = (movies) => ({
+export const deleteMovieSuccess = (id) => ({
   type: "DELETE_MOVIE_SUCCESS",
-  payload: movies,
+  payload: id,
 });
 
 export const deleteMovieFailure = () => ({
   type: "DELETE_MOVIE_FAILURE",
 });
-
