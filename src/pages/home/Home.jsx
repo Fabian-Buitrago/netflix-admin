@@ -32,7 +32,8 @@ export default function Home() {
       try {
         const res = await axios.get("/users/stats", {
           headers: {
-            token: "",
+            token:
+              "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
           },
         });
         const statsList = res.data.sort((a, b) => a._id - b._id);
