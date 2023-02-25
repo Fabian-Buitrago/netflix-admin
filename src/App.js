@@ -10,6 +10,7 @@ import ProductList from "./pages/productList/ProductList";
 import { AuthContext } from "./context/authContext/AuthContext";
 import "./App.css";
 import Product from "./pages/product/Product";
+import NewProduct from "./pages/newProduct/NewProduct";
 
 const AppLayout = ({ admin }) =>
   admin ? (
@@ -36,6 +37,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="/movies" element={<ProductList />} />
         <Route path="/product/:productId" element={<Product />} />
+        <Route path="/newproduct" element={<NewProduct />} />
       </Route>
     </Routes>
   );
