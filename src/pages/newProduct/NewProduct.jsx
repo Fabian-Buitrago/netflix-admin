@@ -1,12 +1,27 @@
 import { useContext, useState } from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { useNavigate } from "react-router-dom";
+
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
 
 import { createMovie } from "../../context/movieContext/apiCalls";
 import { MovieContext } from "../../context/movieContext/MovieContext";
 import storage from "../../firebase";
+
 import "./newProduct.css";
 
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+};
+
 export default function NewProduct() {
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+
   const [movie, setMovie] = useState(null);
   const [img, setImg] = useState(null);
   const [imgTitle, setImgTitle] = useState(null);
@@ -23,6 +38,7 @@ export default function NewProduct() {
   };
 
   const upload = (items) => {
+    setOpen(true);
     items.forEach((item) => {
       const filename =
         new Date().getTime() + "-" + item.label + "-" + item.file.name;
@@ -44,7 +60,10 @@ export default function NewProduct() {
             setMovie((prev) => {
               return { ...prev, [item.label]: downloadURL };
             });
-            setUploaded((prev) => prev + 1);
+            setUploaded((prev) => {
+              prev + 1 === 5 && setOpen(false);
+              return prev + 1;
+            });
           });
         }
       );
@@ -65,6 +84,7 @@ export default function NewProduct() {
   const handleSubmit = (e) => {
     e.preventDefault();
     createMovie(movie, dispatch);
+    navigate("/movies");
   };
 
   return (
@@ -127,12 +147,21 @@ export default function NewProduct() {
         </div>
         <div className="addProductItem">
           <label>Genre</label>
-          <input
-            type="text"
-            placeholder="Genre"
-            name="genre"
-            onChange={handleChange}
-          />
+          <select name="genre" id="genre" onChange={handleChange}>
+            <option value="adventure">Adventure</option>
+            <option value="comedy">Comedy</option>
+            <option value="crime">Crime</option>
+            <option value="fantasy">Fantasy</option>
+            <option value="historical">Historical</option>
+            <option value="horror">Horror</option>
+            <option value="romance">Romance</option>
+            <option value="sci-fi">Sci-fi</option>
+            <option value="thriller">Thriller</option>
+            <option value="western">Western</option>
+            <option value="animation">Animation</option>
+            <option value="drama">Drama</option>
+            <option value="documentary">Documentary</option>
+          </select>
         </div>
         <div className="addProductItem">
           <label>Duration</label>
@@ -185,6 +214,13 @@ export default function NewProduct() {
           </button>
         )}
       </form>
+      {open && (
+        <Modal open={open} onClose={() => setOpen(false)}>
+          <Box sx={style}>
+            <CircularProgress />
+          </Box>
+        </Modal>
+      )}
     </div>
   );
 }

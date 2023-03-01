@@ -11,6 +11,9 @@ import { AuthContext } from "./context/authContext/AuthContext";
 import "./App.css";
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
+import ListList from "./pages/listList/ListList";
+import List from "./pages/list/List";
+import NewList from "./pages/NewList/NewList";
 
 const AppLayout = ({ admin }) =>
   admin ? (
@@ -37,7 +40,10 @@ function App() {
         <Route index element={<Home />} />
         <Route path="/movies" element={<ProductList />} />
         <Route path="/product/:productId" element={<Product />} />
-        <Route path="/newproduct" element={<NewProduct />} />
+        <Route path="/newProduct" element={<NewProduct />} />
+        <Route path="/list" element={<ListList />} />
+        <Route path="/list/:listId" element={<List />} />
+        <Route path="/newList" element={<NewList />} />
       </Route>
     </Routes>
   );

@@ -61,6 +61,11 @@ export default function ProductList() {
 
   return (
     <div className="productList">
+      <div className="productCreate">
+        <Link to="/newProduct">
+          <button className="productAddButton">Create</button>
+        </Link>
+      </div>
       <DataGrid
         rows={movies}
         disableSelectionOnClick

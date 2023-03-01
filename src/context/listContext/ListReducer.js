@@ -1,74 +1,74 @@
-const MovieReducer = (state, action) => {
+const ListReducer = (state, action) => {
   switch (action.type) {
-    case "GET_MOVIES_START":
+    case "GET_LISTS_START":
       return {
-        movies: [],
+        lists: [],
         isFetching: true,
         error: false,
       };
-    case "GET_MOVIES_SUCCESS":
+    case "GET_LISTS_SUCCESS":
       return {
-        movies: action.payload,
+        lists: action.payload,
         isFetching: false,
         error: false,
       };
-    case "GET_MOVIES_FAILURE":
+    case "GET_LISTS_FAILURE":
       return {
-        movies: [],
+        lists: [],
         isFetching: false,
         error: true,
       };
-    case "DELETE_MOVIE_START":
+    case "DELETE_LIST_START":
       return {
         ...state,
         isFetching: true,
         error: false,
       };
-    case "DELETE_MOVIE_SUCCESS":
+    case "DELETE_LIST_SUCCESS":
       return {
-        movies: state.movies.filter((movie) => movie._id !== action.payload),
+        lists: state.lists.filter((list) => list._id !== action.payload),
         isFetching: false,
         error: false,
       };
-    case "DELETE_MOVIE_FAILURE":
-      return {
-        ...state,
-        isFetching: false,
-        error: true,
-      };
-    case "CREATE_MOVIE_START":
-      return {
-        ...state,
-        isFetching: true,
-        error: false,
-      };
-    case "CREATE_MOVIE_SUCCESS":
-      return {
-        movies: [...state.movies, action.payload],
-        isFetching: false,
-        error: false,
-      };
-    case "CREATE_MOVIE_FAILURE":
+    case "DELETE_LIST_FAILURE":
       return {
         ...state,
         isFetching: false,
         error: true,
       };
-    case "UPDATE_MOVIE_START":
+    case "CREATE_LIST_START":
       return {
         ...state,
         isFetching: true,
         error: false,
       };
-    case "UPDATE_MOVIE_SUCCESS":
+    case "CREATE_LIST_SUCCESS":
       return {
-        movies: state.movies.filter(
-          (movie) => movie._id === action.payload && action.payload
+        lists: [...state.lists, action.payload],
+        isFetching: false,
+        error: false,
+      };
+    case "CREATE_LIST_FAILURE":
+      return {
+        ...state,
+        isFetching: false,
+        error: true,
+      };
+    case "UPDATE_LIST_START":
+      return {
+        ...state,
+        isFetching: true,
+        error: false,
+      };
+    case "UPDATE_LIST_SUCCESS":
+      return {
+        lists: state.lists.filter(
+          (list) => list._id === action.payload && action.payload
         ),
         isFetching: false,
         error: false,
       };
-    case "UPDATE_MOVIE_FAILURE":
+    case "UPDATE_LIST_FAILURE":
       return {
         ...state,
         isFetching: false,
@@ -79,4 +79,4 @@ const MovieReducer = (state, action) => {
   }
 };
 
-export default MovieReducer;
+export default ListReducer;
